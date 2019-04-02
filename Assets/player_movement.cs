@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class player_movement : MonoBehaviour
 {
-    public RigidBody rb;
-
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        rb.Gravity = false;
+        rb.useGravity = false;
     }
 
     // Update is called once per frame
