@@ -37,6 +37,7 @@ public class FloorSpawn : MonoBehaviour
                 newFloor.transform.position = nextFloor;
                 create = true;
                 newFloor.transform.gameObject.tag = "Floor" + counter;
+                newFloor.transform.gameObject.name = "Floor";
             }
 
             Debug.Log(Player.GetComponent<PlayerCollision>().floorRun);

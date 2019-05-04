@@ -60,10 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\scripts\FloorSpawn.cs" />
-    <Compile Include="Assets\scripts\FollowPlayer.cs" />
-    <Compile Include="Assets\scripts\PlayerCollision.cs" />
-    <Compile Include="Assets\scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\FloorSpawn.cs" />
+    <Compile Include="Assets\Scripts\FollowPlayer.cs" />
+    <Compile Include="Assets\Scripts\PlayerCollision.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/victo/OneDrive/Documentos/Escape_Lane/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
