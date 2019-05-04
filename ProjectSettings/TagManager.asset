@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - barrier
+  - Barrier
+  - Floor0
+  - Floor1
   layers:
   - Default
   - TransparentFX

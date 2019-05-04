@@ -1,0 +1,2 @@
+C:\Users\victo\OneDrive\Documentos\Escape_Lane\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\victo\OneDrive\Documentos\Escape_Lane\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

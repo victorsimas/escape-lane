@@ -4,23 +4,49 @@ using UnityEngine;
 
 public class FloorSpawn : MonoBehaviour
 {
-    public Transform floor;
+    public GameObject Floor;
+    public GameObject newFloor;
+    public GameObject Player;
+    public Vector3 nextFloor;
+    public int counter = 0;
+    public bool create;
 
     private void Start()
     {
-        floor = GetComponent<Transform>();
+        Floor = GameObject.FindWithTag("Floor" + counter);
+        Player = GameObject.FindWithTag("Player");
+        nextFloor = Floor.transform.position;
+        create = false;
     }
 
-    public void OnCollisionStay(Collision collision)
+    public void Update()
     {
-        if (collision.collider.tag == "Player" && collision.collider.transform.position.z  >= floor.position.z)
+        if (Player.transform.position.z > Floor.transform.position.z)
         {
-            Debug.Log("beyond floor");
-        }
-    }
+            if (create != true)
+            {
+                if (Floor.tag == "Floor0") {
+                    counter++;
+                }
+                if (Floor.tag == "Floor1")
+                {
+                    counter--;
+                }
+                newFloor = Instantiate(Floor) as GameObject;
+                nextFloor.z += Floor.transform.localScale.z/2;
+                newFloor.transform.position = nextFloor;
+                create = true;
+                newFloor.transform.gameObject.tag = "Floor" + counter;
+            }
 
-    private void FixedUpdate()
-    {
-        
+            Debug.Log(Player.GetComponent<PlayerCollision>().floorRun);
+
+            if (Player.GetComponent<PlayerCollision>().floorRun != true)
+            {
+                GameObject.Destroy(Floor);
+                Floor = GameObject.FindWithTag("Floor" + counter);
+                create = false;
+            }
+        }
     }
 }
