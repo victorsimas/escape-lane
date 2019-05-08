@@ -33,7 +33,7 @@ public class FloorSpawn : MonoBehaviour
                     counter--;
                 }
                 newFloor = Instantiate(Floor) as GameObject;
-                nextFloor.z += Floor.transform.localScale.z/2;
+                nextFloor.z += Floor.GetComponent<Collider>().bounds.size.z/2;
                 newFloor.transform.position = nextFloor;
                 create = true;
                 newFloor.transform.gameObject.tag = "Floor" + counter;

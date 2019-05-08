@@ -9,6 +9,11 @@ public class FollowPlayer : MonoBehaviour
     public Transform player;
     public Vector3 offset;
 
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+    }
+
     // Update is called once per frame
     void Update()
     {

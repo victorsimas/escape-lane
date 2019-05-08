@@ -17,7 +17,7 @@ public class PlayerCollision : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Barrier")
+        if (collision.collider.tag == "Barrier0")
         {
             movement.enabled = false;
         }
