@@ -6,8 +6,7 @@ TagManager:
   tags:
   - Floor0
   - Floor1
-  - Barrier0
-  - Barrier1
+  - Obstacle
   layers:
   - Default
   - TransparentFX
