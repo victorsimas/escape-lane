@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraMotor.cs" />
+    <Compile Include="Assets\Scripts\MobileScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMotor.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/victo/OneDrive/Documentos/Escape_Lane/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

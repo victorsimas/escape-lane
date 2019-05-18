@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     private const float LANE_DISTANCE = 5.0f;
-    private const float TURN_SPEED = 0.05f;
+    private const float TURN_SPEED = 1f;
 
     // Movement
     private CharacterController controller;
@@ -22,12 +22,13 @@ public class PlayerMotor : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("It is " + MobileScript.Instance.Tap);
         // Gather wich Lane it should be
-        if (Input.GetKeyDown(KeyCode.A))
+        if (MobileScript.Instance.SwipeLeft)
         {
             MoveLane(false);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (MobileScript.Instance.SwipeRight)
         {
             MoveLane(true);
         }
@@ -48,11 +49,12 @@ public class PlayerMotor : MonoBehaviour
         moveVector.x = (targetPosition - transform.position).normalized.x * speed;
         
         //Calculating Y
-        if (isGrounded())
+        if (IsGrounded())
         {
             verticalVelocity = -0.1f;
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            //Jump
+            if (MobileScript.Instance.SwipeUp)
             {
                 verticalVelocity = jumpForce;
             }
@@ -60,6 +62,12 @@ public class PlayerMotor : MonoBehaviour
         else
         {
             verticalVelocity -= (gravity * Time.deltaTime);
+
+            //Fast Falling mechaninc
+            if (MobileScript.Instance.SwipeDown)
+            {
+                verticalVelocity -= jumpForce;
+            }
         }
 
         moveVector.y = verticalVelocity;
@@ -74,40 +82,20 @@ public class PlayerMotor : MonoBehaviour
         if (dir != Vector3.zero)
         {
             dir.y = 0;
-            transform.forward = Vector3.Lerp(transform.position, dir, TURN_SPEED);
+            transform.forward = Vector3.Lerp(transform.forward, dir, TURN_SPEED);
         }
-       
     }
 
     private void MoveLane(bool goingRight)
     {
+        //Checks goingRight result and defines limit
         desiredLane += (goingRight)? 1 : -1;
         desiredLane = Mathf.Clamp(desiredLane, 0, 2);
-
-        /* VERSION 0.1
-        //Left
-        if (!goingRight)
-        {
-            desiredLane--;
-            if(desiredLane < 0)
-            {
-                desiredLane = 0;
-            }
-        }
-        //Right
-        else
-        {
-            desiredLane++;
-            if (desiredLane > 2)
-            {
-                desiredLane = 2; 
-            }
-        }
-        */
     }
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
+        //Generate a ground Ray and bases it origin by the controller bounds 
         Ray groundRay = new Ray(
             new Vector3(
                 controller.bounds.center.x,
@@ -116,7 +104,7 @@ public class PlayerMotor : MonoBehaviour
             Vector3.down);
 
         Debug.DrawRay(groundRay.origin, groundRay.direction, Color.cyan, 1f);
-
+        //Returns if groundRay touches anything
         return Physics.Raycast(groundRay, 0.2f + 0.1f);
     }
 }
