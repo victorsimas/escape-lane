@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     private const float LANE_DISTANCE = 5.0f;
-    private const float TURN_SPEED = 1f;
+    private const float TURN_SPEED = 0.1f;
+
+    private bool isRunning = false;
 
     // Movement
     private CharacterController controller;
@@ -22,7 +24,11 @@ public class PlayerMotor : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("It is " + MobileScript.Instance.Tap);
+        if (!isRunning)
+        {
+            return;
+        }
+
         // Gather wich Lane it should be
         if (MobileScript.Instance.SwipeLeft)
         {
@@ -47,9 +53,10 @@ public class PlayerMotor : MonoBehaviour
         //Calculationg move delta
         Vector3 moveVector = Vector3.zero;
         moveVector.x = (targetPosition - transform.position).normalized.x * speed;
-        
+
+        bool isGrounded = IsGrounded();
         //Calculating Y
-        if (IsGrounded())
+        if (isGrounded)
         {
             verticalVelocity = -0.1f;
 
@@ -69,10 +76,8 @@ public class PlayerMotor : MonoBehaviour
                 verticalVelocity -= jumpForce;
             }
         }
-
         moveVector.y = verticalVelocity;
         moveVector.z = speed;
-
 
         //Moving the Car
         controller.Move(moveVector * Time.deltaTime);
@@ -106,5 +111,10 @@ public class PlayerMotor : MonoBehaviour
         Debug.DrawRay(groundRay.origin, groundRay.direction, Color.cyan, 1f);
         //Returns if groundRay touches anything
         return Physics.Raycast(groundRay, 0.2f + 0.1f);
+    }
+
+    public void StartRunning()
+    {
+        isRunning = true;
     }
 }
