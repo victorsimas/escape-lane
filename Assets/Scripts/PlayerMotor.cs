@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
+    //Constants
     private const float LANE_DISTANCE = 5.0f;
     private const float TURN_SPEED = 0.1f;
 
+    //Validation for start
     private bool isRunning = false;
 
     // Movement
@@ -14,11 +16,18 @@ public class PlayerMotor : MonoBehaviour
     private float jumpForce = 14.0f;
     private float gravity = 12.0f;
     private float verticalVelocity;
-    private float speed = 7.0f;
     private int desiredLane = 1; // 0 = left, 1 = middle, 2 = rigth
+
+    //Speed Modifier
+    private float originalSpeed = 7.0f;
+    private float speed;
+    private float speedIncreaseLastTick;
+    private float speedIncreaseTime = 2.5f;
+    private float speedIncreaseAmount = 0.1f;
 
     private void Start()
     {
+        speed = originalSpeed;
         controller = GetComponent<CharacterController>();
     }
 
@@ -27,6 +36,14 @@ public class PlayerMotor : MonoBehaviour
         if (!isRunning)
         {
             return;
+        }
+
+        //Speed change
+        if (Time.time - speedIncreaseLastTick > speedIncreaseTime)
+        {
+            speedIncreaseLastTick = Time.time;
+            speed += speedIncreaseAmount;
+            GameManager.Instance.UpdateModifier(speed -  originalSpeed);
         }
 
         // Gather wich Lane it should be
@@ -111,6 +128,21 @@ public class PlayerMotor : MonoBehaviour
         Debug.DrawRay(groundRay.origin, groundRay.direction, Color.cyan, 1f);
         //Returns if groundRay touches anything
         return Physics.Raycast(groundRay, 0.2f + 0.1f);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        switch (hit.gameObject.tag)
+        {
+            case "Obstacle":
+                Crash();
+                break;
+        }
+    }
+
+    private void Crash()
+    {
+        isRunning = false;
     }
 
     public void StartRunning()

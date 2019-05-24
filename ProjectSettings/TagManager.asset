@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Floor0
-  - Floor1
   - Obstacle
+  - Floor
+  - Coin
   layers:
   - Default
   - TransparentFX
