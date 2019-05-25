@@ -65,8 +65,12 @@
     <Compile Include="Assets\Scripts\CameraMotor.cs" />
     <Compile Include="Assets\Scripts\Coin.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\MobileScript.cs" />
+    <Compile Include="Assets\Scripts\Piece.cs" />
+    <Compile Include="Assets\Scripts\PieceSpawner.cs" />
     <Compile Include="Assets\Scripts\PlayerMotor.cs" />
+    <Compile Include="Assets\Scripts\Segment.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/victo/OneDrive/Documentos/Escape_Lane/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
