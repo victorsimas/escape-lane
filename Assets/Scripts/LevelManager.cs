@@ -12,8 +12,9 @@ public class LevelManager : MonoBehaviour
     //List of Pieces
     public List<Piece> ramps = new List<Piece>();
     public List<Piece> longblocks = new List<Piece>();
-    public List<Piece> jumps = new List<Piece>();
-    public List<Piece> slides = new List<Piece>();
+    public List<Piece> blocks = new List<Piece>();
+    //public List<Piece> jumps = new List<Piece>();
+    //public List<Piece> slides = new List<Piece>();
     public List<Piece> pieces = new List<Piece>(); //All the pieces in the pool
 
     public Piece GetPiece(PieceType pt, int visualIndex)
@@ -29,18 +30,22 @@ public class LevelManager : MonoBehaviour
             {
                 go = ramps[visualIndex].gameObject;
             }
-            else if(pt == PieceType.jump)
-            {
-                go = jumps[visualIndex].gameObject;
-            }
+            //else if(pt == PieceType.jump)
+            //{
+            //    go = jumps[visualIndex].gameObject;
+            //}
             else if (pt == PieceType.longblock)
             {
                 go = longblocks[visualIndex].gameObject;
             }
-            else if (pt == PieceType.slide)
+            else if (pt == PieceType.block)
             {
-                go = slides[visualIndex].gameObject;
+                go = blocks[visualIndex].gameObject;
             }
+            //else if (pt == PieceType.slide)
+            //{
+            //    go = slides[visualIndex].gameObject;
+            //}
 
             go = Instantiate(go);
             p = go.GetComponent<Piece>();

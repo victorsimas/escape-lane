@@ -19,7 +19,7 @@ public class PlayerMotor : MonoBehaviour
     private int desiredLane = 1; // 0 = left, 1 = middle, 2 = rigth
 
     //Speed Modifier
-    private float originalSpeed = 7.0f;
+    private float originalSpeed = 20.0f;
     private float speed;
     private float speedIncreaseLastTick;
     private float speedIncreaseTime = 2.5f;
@@ -78,20 +78,20 @@ public class PlayerMotor : MonoBehaviour
             verticalVelocity = -0.1f;
 
             //Jump
-            if (MobileScript.Instance.SwipeUp)
-            {
-                verticalVelocity = jumpForce;
-            }
+            //if (MobileScript.Instance.SwipeUp)
+            //{
+            //    verticalVelocity = jumpForce;
+            //}
         }
         else
         {
             verticalVelocity -= (gravity * Time.deltaTime);
 
             //Fast Falling mechaninc
-            if (MobileScript.Instance.SwipeDown)
-            {
-                verticalVelocity -= jumpForce;
-            }
+            //if (MobileScript.Instance.SwipeDown)
+            //{
+            //    verticalVelocity -= jumpForce;
+            //}
         }
         moveVector.y = verticalVelocity;
         moveVector.z = speed;
