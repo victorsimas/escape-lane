@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { set; get; }
 
     private bool isGameStarted = false;
+    public bool isDead { set; get; }
     private PlayerMotor motor;
 
     //UI and UI Fields
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
             isGameStarted = true;
         }
 
-        if (isGameStarted)
+        if (isGameStarted && !isDead)
         {
             //Bump
             score += (Time.deltaTime * modifierScore);
