@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
+    //Instance
+    public static PlayerMotor Instance { set; get; }
+
     //Constants
-    private const float LANE_DISTANCE = 5.0f;
+    private const float LANE_DISTANCE = 7.5f;
     private const float TURN_SPEED = 0.1f;
 
     //Validation for start
     private bool isRunning = false;
+    public bool IsRunning { get { return isRunning; } }
 
     // Movement
     private CharacterController controller;
@@ -27,6 +31,7 @@ public class PlayerMotor : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         speed = originalSpeed;
         controller = GetComponent<CharacterController>();
     }
