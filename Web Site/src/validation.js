@@ -1,22 +1,20 @@
 function validate() {
-    if (nome.value == "") {
-        alert("PLEASE INSERT A FUCKING NAME");
-        nome.focus();
-        return false;
-    }
-    if (email.value == "" ||
-        email.value.indexOf("@") <= 0 ||
-        email.value.lastIndexOf(".") <=
-        email.value.indexOf("@") <= 0) {
-        alert("YOUR SHIT MAIL IS NOT VALID!");
-        email.focus();
-        return false;
-    }
-    if (telefone.value == "" ||
-        isNaN(telefone.value) == true ||
-        telefone.value.length > 11) {
-        alert("WHAT THE HECK IS THIS? NOT RIGHT DUDE");
-        telefone.focus();
-        return false;
-    }
+    if(nome.value.length < 3){
+		alert("INFORME UM NOME DESCENTE ***");
+		nome.focus();
+		return false;
+	}
+	if(email.value.length < 6 || 
+		email.value.indexOf("@") <=0 ||
+		email.value.indexOf(".") <=0){
+		alert("INFORME A ***DO SEU EMAIL");
+		email.focus();
+		return false;
+	}
+	if(fone.value.length <9 || 
+		isNaN(fone.value.indexOf("-") <= 5) == true || isNaN(fone.value.indexOf("-") >= 5) == true){
+		alert("INFORME O NUMERO DE TELEFONE ***");
+		fone.focus();
+		return false;	
+	}
 }
